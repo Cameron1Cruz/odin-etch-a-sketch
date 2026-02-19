@@ -1,4 +1,5 @@
 const container = document.querySelector("#container");
+const resizeBtn = document.querySelector("#resize");
 
 function createGrid(size) {
     container.innerHTML = "";
@@ -14,9 +15,20 @@ function createGrid(size) {
         square.addEventListener("mouseover", () => {
         square.style.backgroundColor = "black";
     });
-    
+
         container.appendChild(square);
     }
 }
+
+resizeBtn.addEventListener("click", () => {
+    let size = Number(prompt("How many squares per side? (max 100)"));
+
+    if (!Number.isInteger(size) || size < 1 || size > 100) {
+        alert("Please enter a whole number between 1 and 100.");
+        return;
+    }
+
+    createGrid(size);
+})
 
 createGrid(16);
